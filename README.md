@@ -177,7 +177,7 @@ Contributions are welcome! To contribute:
 
    ```
    git clone https://github.com/yourusername/transcript-formatter.git
-   cd transcript-formatter
+   cd ai-yt-transcript-processor
    ```
 
 3. **Create a New Branch**:
