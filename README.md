@@ -47,7 +47,7 @@ The **Transcript Formatter with Speaker Identification** is a command-line tool 
 
    ```
    git clone https://github.com/rvckvs/ai-yt-transcript-processor.git
-   cd transcript-formatter
+   cd ai-yt-transcript-processor
    ```
 
 2. **Set Up a Virtual Environment** (Optional but recommended):
