@@ -1,0 +1,7 @@
+# Ignore all contents within the output/ directory
+output/*
+!output/.gitkeep
+
+# Ignore all contents within the raw_transcript/ directory
+raw_transcripts/*
+!raw_transcripts/.gitkeep
