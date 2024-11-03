@@ -46,7 +46,7 @@ The **Transcript Formatter with Speaker Identification** is a command-line tool 
 1. **Clone the Repository**:
 
    ```
-   git clone https://github.com/rvckvs/transcript-formatter.git
+   git clone https://github.com/rvckvs/ai-yt-transcript-processor.git
    cd transcript-formatter
    ```
 
@@ -160,7 +160,7 @@ The script integrates OpenAI's API for formatting, powered by customizable promp
 - **Speaker Identification Accuracy**: The AI may not always accurately attribute speakers, especially with complex dialogues.
 - **Terminal Compatibility**: Some terminals may not support ANSI color codes used in the log output.
 
-## Future Enhancements
+## Future Enhancements ???
 
 - **Parallel Processing**: Add support for concurrent chunk processing to improve speed.
 - **Token-Based Chunking**: Use tokenizers for more precise chunk splitting.
@@ -200,7 +200,7 @@ Contributions are welcome! To contribute:
 
 ### Reporting Issues
 
-Report bugs or feature requests by [opening an issue](https://github.com/yourusername/transcript-formatter/issues).
+Report bugs or feature requests by [opening an issue](https://github.com/rvckvs/ai-yt-transcript-processor/issues).
 
 ## License
 
