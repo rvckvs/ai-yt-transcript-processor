@@ -139,7 +139,7 @@ def read_input_file(file_path):
         logging.error(f"Error reading input file: {e}")
         sys.exit(1)
 
-def write_to_file(file_path, content, mode='a'):
+def write_to_file(file_path, content, mode='a', file_obj=None):
     """
     Writes the given content to a file at the specified path.
     
@@ -149,11 +149,15 @@ def write_to_file(file_path, content, mode='a'):
         mode (str): The file mode, default is 'a' (append).
     """
     try:
-        with open(file_path, mode, encoding='utf-8') as f:
-            f.write(content)
-            f.write("\n\n")  # Ensure separation between chunks
-            logger = logging.getLogger()
-            logger.success(f"Successfully wrote chunk to {file_path}.")
+        if file_obj:
+            file_obj.write(content)
+            file_obj.write("\n\n")  # Ensure separation between chunks
+        else:
+            with open(file_path, mode, encoding='utf-8') as f:
+                f.write(content)
+                f.write("\n\n")  # Ensure separation between chunks
+        logger = logging.getLogger()
+        logger.success(f"Successfully wrote chunk to {file_path}.")
     except Exception as e:
         logging.error(f"Error writing to output file: {e}")
         sys.exit(1)
@@ -274,20 +278,23 @@ def main():
     total_chunks = len(chunks)
     logging.info(f"Starting to process {total_chunks} chunks.")
     
-    for idx, chunk in enumerate(chunks):
-        logging.debug(f"Processing chunk {idx + 1}/{total_chunks} with {len(chunk)} characters.")
-        formatted = format_transcript(
-            client,
-            args.model,
-            chunk,
-            max_retries=args.max_retries,
-            chunk_number=idx + 1,
-            total_chunks=total_chunks
-        )
-        write_to_file(args.output_file, formatted, mode='a')  # Write each chunk to the output file incrementally
-        gc.collect()  # Manually trigger garbage collection to free up memory
-        time.sleep(2)  # Increase delay between requests
-        logging.info(f"Completed processing chunk {idx + 1}/{total_chunks}.\n")
+    with open(args.output_file, "w", encoding="utf-8") as out_f:
+        for idx, chunk in enumerate(chunks):
+            logging.debug(
+                f"Processing chunk {idx + 1}/{total_chunks} with {len(chunk)} characters."
+            )
+            formatted = format_transcript(
+                client,
+                args.model,
+                chunk,
+                max_retries=args.max_retries,
+                chunk_number=idx + 1,
+                total_chunks=total_chunks,
+            )
+            write_to_file(args.output_file, formatted, file_obj=out_f)
+            gc.collect()  # Manually trigger garbage collection to free up memory
+            time.sleep(2)  # Increase delay between requests
+            logging.info(f"Completed processing chunk {idx + 1}/{total_chunks}.\n")
 
     logging.info("Transcript formatting and speaker identification completed successfully.")
 
