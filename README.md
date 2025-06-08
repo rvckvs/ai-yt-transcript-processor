@@ -160,7 +160,7 @@ The script integrates OpenAI's API for formatting, powered by customizable promp
 - **Speaker Identification Accuracy**: The AI may not always accurately attribute speakers, especially with complex dialogues.
 - **Terminal Compatibility**: Some terminals may not support ANSI color codes used in the log output.
 
-## Future Enhancements ???
+## Future Enhancements 
 
 - **Parallel Processing**: Add support for concurrent chunk processing to improve speed.
 - **Token-Based Chunking**: Use tokenizers for more precise chunk splitting.
